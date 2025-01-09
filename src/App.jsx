@@ -3,6 +3,7 @@ import { SearchOutlined } from '@ant-design/icons';
 import { Button, Input, Space, Table } from 'antd';
 import Highlighter from 'react-highlight-words';
 import './App.css'
+import jsonData from './static/Plantilla.json';
 
 
 function App() {
@@ -117,19 +118,9 @@ function App() {
 
   useEffect(() => {
     // Definir una función asíncrona dentro de useEffect
-    const fetchData = async () => {
-      try {
-       
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/plantillaActual`); // Llamada al endpoint
-        if (!response.ok) {
-          throw new Error(`Error en la solicitud: ${response.status}`);
-        }
-        const result = await response.json(); // Parsear la respuesta a JSON
-        setData(result); // Guardar los datos en el estado
-      } catch (error) {
-        console.log(error);
-        
-      }
+    const fetchData = () => {
+       setData(jsonData.PLANTILLA)  
+       console.log(jsonData.PLANTILLA)  
     };
 
     fetchData();
